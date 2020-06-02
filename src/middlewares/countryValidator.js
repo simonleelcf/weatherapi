@@ -1,7 +1,7 @@
 const { getCode, getName } = require('country-list');
 const responseFormatter = require('../utils/resposeFormatter');
 module.exports = (req, res, next) => {
-    const { cc, city } = req.params;
+    const { cc, city } = req.query;
     if (!cc || !city) {
         return responseFormatter(
             res,
