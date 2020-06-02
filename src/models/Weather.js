@@ -34,11 +34,3 @@ function filterData(data, weatherType) {
         delete data.current;
     }
 }
-
-/* function getWeatherData(city, country) {
-    const queryString = `${city},${country}`;
-    const urls = ['/weather', '/forecast'];
-    return urls.map((i) => {
-        return axios.get(i, { params: { q: queryString } });
-    });
-} */

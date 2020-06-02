@@ -1,11 +1,10 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const weatherRouter = require("./routes/weather");
+const weatherRouter = require('./routes/weather');
+const responseFormatter = require('./utils/resposeFormatter');
 
-router.get("/", (req, res) => {
-  res.send("Wellcom");
-});
+router.get('/', (req, res) => responseFormatter(res, 200, 'welcome', null));
 
-router.use("/api/weather", weatherRouter);
+router.use('/api/weather', weatherRouter);
 
 module.exports = router;
