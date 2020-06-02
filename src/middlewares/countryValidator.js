@@ -1,15 +1,8 @@
+const responseFormatter = require('../services/responseFormatter');
 const { getCode, getName } = require('country-list');
-const responseFormatter = require('../utils/resposeFormatter');
+
 module.exports = (req, res, next) => {
-    const { cc, city } = req.query;
-    if (!cc || !city) {
-        return responseFormatter(
-            res,
-            400,
-            'country or city parameter is missing',
-            null
-        );
-    }
+    const { cc } = req.params;
     if (cc.length === 2) {
         if (getName(cc)) {
             return next();
@@ -20,10 +13,5 @@ module.exports = (req, res, next) => {
             return next();
         }
     }
-    return responseFormatter(
-        res,
-        400,
-        'Invalid country name or country code',
-        null
-    );
+    responseFormatter(res, 400, 'Invalid country name or country code', null);
 };
