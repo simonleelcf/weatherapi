@@ -1,18 +1,20 @@
-const express = require("express");
+const express = require('express');
+const axios = require('../utils/axios');
+const Weather = require('../models/Weather');
 const router = express.Router();
-const axios = require("axios");
 const appid = process.env.appid;
 
-router.get("/:cc/:city", (req, res) => {
-  const { cc, city } = req.params;
-  axios
-    .get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${cc},${city}&appid=${appid}`
-    )
-    .then((response) => {
-      res.send(response.data);
-    })
-    .catch((err) => console.log(err));
+router.get('/:cc/:city', (req, res) => {
+    const { cc, city } = req.params;
+    /*  axios
+        .get(`/weather?q=${city},${cc}`) */
+    weather = new Weather();
+    weather
+        .getData(city, cc)
+        .then((response) => {
+            res.send(response);
+        })
+        .catch((err) => console.log(err));
 });
-
+//
 module.exports = router;
