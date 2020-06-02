@@ -1,4 +1,4 @@
-const responseFormatter = require('../services/responseFormatter');
+const responseFormatter = require('../utils/resposeFormatter');
 const { getCode, getName } = require('country-list');
 
 module.exports = (req, res, next) => {
